@@ -143,11 +143,14 @@ html{
 body{
     font-family: 'Open Sans', Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif,Holland;
     font-size: 1.4rem; /* フォントサイズ */
-    line-height: 1.6; /* 行間 */
-    letter-spacing: 1.1em;/* 文字間隔 */
+    line-height: 1.0rem; /* 行間 */
+    letter-spacing: 1rem;/* 文字間隔 */
+
+
 }
 .text-center {
   text-align: center;
+  line-height: 1rem;
   @include media{
   	font-size: 1.8rem;
   } 
@@ -346,6 +349,7 @@ section {
 	.box-goal{
 	    height: 100px;
 	    align-items: center;
+
   	}
   	.prev{
 	    font-size: 2.0rem;
@@ -420,9 +424,10 @@ section {
 		//margin: 0 10px 0;
 	}
 }
-.label{
+.label-form{
 	width: 120px;
 	margin-right: 80px;
+	text-align: center;
 	@include media{
 		@include margin(5px,0,0,0);
 	}
@@ -515,19 +520,19 @@ section {
 		.github{
 			font-size: 3.2rem;
 			i{
-				margin-left: 2px;
+				margin-left: 10px;
 			}
 		}
 		.twitter{
 			font-size: 3.2rem;
 				i{
-					margin-left: 2px;
+					margin-left: 10px;
 				}
 		}
 		.instagram{
 			font-size: 3.2rem;
 				i{
-					margin-left: 3px;
+					margin-left: 10px;
 				}
 		}
 	}
@@ -536,6 +541,9 @@ section {
 .material-button-anim{
 	@include media{
 		display: none;
+	}
+	a{
+		color: #fff;
 	}
 }
 /* .github{

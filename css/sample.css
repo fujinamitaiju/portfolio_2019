@@ -55,14 +55,15 @@ body {
   font-family: 'Open Sans', Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif,Holland;
   font-size: 1.4rem;
   /* フォントサイズ */
-  line-height: 1.6;
+  line-height: 1.0rem;
   /* 行間 */
-  letter-spacing: 1.1em;
+  letter-spacing: 1rem;
   /* 文字間隔 */
 }
 
 .text-center {
   text-align: center;
+  line-height: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -361,13 +362,14 @@ section h2 {
   }
 }
 
-.label {
+.label-form {
   width: 120px;
   margin-right: 80px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 768px) {
-  .label {
+  .label-form {
     margin-top: 5px;
     margin-right: 0;
     margin-bottom: 0;
@@ -480,7 +482,7 @@ section h2 {
 }
 
 #contact ul .github i {
-  margin-left: 2px;
+  margin-left: 10px;
 }
 
 #contact ul .twitter {
@@ -488,7 +490,7 @@ section h2 {
 }
 
 #contact ul .twitter i {
-  margin-left: 2px;
+  margin-left: 10px;
 }
 
 #contact ul .instagram {
@@ -496,13 +498,17 @@ section h2 {
 }
 
 #contact ul .instagram i {
-  margin-left: 3px;
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 768px) {
   .material-button-anim {
     display: none;
   }
+}
+
+.material-button-anim a {
+  color: #fff;
 }
 
 /* .github{
