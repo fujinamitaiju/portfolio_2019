@@ -14,7 +14,7 @@ body
   font-family: 'Open Sans', Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif,Holland;
     font-size: 1.4rem; /* フォントサイズ */
     line-height: 1.6; /* 行間 */
-    letter-spacing: .1em;　/* 文字間隔 */
+    letter-spacing: 1.1em;　/* 文字間隔 */
 }
 
 .text-center {
@@ -26,7 +26,6 @@ header{
 }
 .hamburger{
   position: fixed;
-
   width: 40px;
   height: 30px;
   margin: 30px  10px;/*うえ　左右　した*/
@@ -178,9 +177,7 @@ header{
 
 }
 
-section h2 {
-    font-size: 3.2rem; 
-  }
+
 /*   section   一括*/
 section {
   padding: 60px 0; 
@@ -360,8 +357,8 @@ section h2{
     color: #FFF;
     background-color: #000000;
     -moz-border-radius: 50%;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
     /* -webkit-border-radius: 50%;
     border-radius: 50%; */
    }
@@ -389,6 +386,8 @@ section h2{
     #passions p{
       font-size: 1.1rem;
     }
+
+
     #goal .prev{
       font-size: 1.0rem;
     }
@@ -411,6 +410,8 @@ section h2{
     #colleague p{
       font-size: 1.1rem;
     }
+
+
     #contact{
       display: flex;
       justify-content: center;
@@ -425,7 +426,7 @@ section h2{
       flex-direction: column;
       background-color: #f4f4f4;
       padding: 0;
-      /* margin: 0 10px 0  */ ;
+      /* margin: 0 10px 0  */ 
 
     }
     
@@ -455,7 +456,7 @@ section h2{
     .slide-dots li{
       display: inline-block;
     }
-    #goal botton{
+    #goal button{
       margin: 0;
       padding: 0;
       background: none;

@@ -1,0 +1,587 @@
+@charset "UTF-8";
+
+@import 'https://fonts.googleapis.com/css?family=Abel';
+
+@mixin opacity($opacity: 0,$top: 100px){
+	opacity: $opacity;
+	top: $top;
+}
+@mixin size($height,$width){
+	height: $height;
+	width: $width;
+}
+@mixin color($bc,$c){
+	background-color: $bc;
+	color: $c;
+}
+
+@mixin font($fs,$fw){
+	font-size: $fs;
+	font-weight: $fw;
+}
+
+@mixin margin($t,$r,$b,$l){
+	margin-top: $t;
+	margin-right: $r;
+	margin-bottom: $b;
+	margin-left: $l;
+}
+@mixin flex($flex,$justy){
+	display: $flex;
+	justify-content: $justy;
+}
+@mixin flexbox{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+@mixin flexitems{
+	display: flex;
+	align-items: center;
+}
+@mixin flex_column{
+	  display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+}
+@mixin flex_row{
+	  display: flex;
+      justify-content: center;
+      flex-direction: row;
+
+}
+
+@mixin fixed($position,$display){
+	//position: fixed;
+	position: $position;
+	display: $display;
+  	//display: none;
+}
+
+@mixin media ($width:768px){
+	@media only screen and (max-width: $width){
+		@content;
+	}
+
+}
+
+@mixin border($border-moz:50%,$border-webkit:50%,$border:50%){
+	-moz-border-radius: $border-moz;
+    -webkit-border-radius: $border-webkit;
+    border-radius: $border;
+
+}
+
+@mixin box-sizing($box-moz:border-box,$box-webkit:border-box,$box:border-box){
+	-moz-box-sizing: $box-moz;
+    -webkit-box-sizing: $box-webkit;
+    box-sizing: $box;
+
+}
+@mixin appearance($app-moz:none,$app-webkit:none,$app:none){
+	-webkit-appearance: $app-moz;
+	-moz-appearance: $app-webkit;
+	appearance: $app;
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }  
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($animation-name) {
+  -webkit-animation: $animation-name;
+  -moz-animation: $animation-name;
+  animation: $animation-name;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@include keyframes(animationSample){
+	0% {
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}
+
+
+%hamburger_relative{
+	position: relative;
+    display: block;
+}
+
+%hamburger_absolute{
+
+	content: "";
+  position: absolute;
+}
+
+ %hamburger_main{
+	width: 100%;
+	height: 2px;
+	background-color: #333333;
+	//時間的変化のアニメーション
+	transition: all 0.5s ease; //0.5秒　推移
+	border-radius: 1px;
+}
+
+html{
+	font-size: 62.5%; /* ベースとなるフォントサイズの定義 */
+    background-color: #F4F4F4;
+
+}
+body{
+    font-family: 'Open Sans', Helvetica, '游ゴシック', 'Yu Gothic', YuGothic, HiraKakuProN-W3, 'メイリオ', Meiryo, sans-serif,Holland;
+    font-size: 1.4rem; /* フォントサイズ */
+    line-height: 1.6; /* 行間 */
+    letter-spacing: 1.1em;/* 文字間隔 */
+}
+.text-center {
+  text-align: center;
+  @include media{
+  	font-size: 1.8rem;
+  } 
+}
+header{
+  margin-bottom: 50px; 
+}
+
+.hamburger{
+	position: fixed;
+	@include size(30px,40px);
+	//width: 40px;
+	//height: 30px;
+	margin: 30px  10px;//うえ　左右　した
+	z-index: 9999;
+	span{
+		@extend %hamburger_relative;
+		@extend %hamburger_main;
+		//position: relative;
+		//display: block;
+		&:after{
+			@extend %hamburger_absolute;
+			@extend %hamburger_main;
+			top: 11px;
+
+		}
+		&:before{
+			
+			@extend %hamburger_absolute;
+			@extend %hamburger_main;
+			top: -11px;
+		}
+	}
+}
+.active{
+		span{
+			background-color: transparent; //transparent 透明
+			&:before{
+				z-index: 9999;
+				transform: rotate(45deg) translate(6px,6px);
+				//45度傾ける  座標 x,yで指定
+			}
+			&:after{
+				z-index: 9999;
+ 				transform: rotate(-45deg) translate(8px,-10px);				
+			}
+		}
+	}
+
+.headerbg{
+	height: 600px;
+	background: url(../image/logo2.svg);
+	background-repeat: no-repeat; //画像のrepeatを止める
+	background-position: center center;
+	background-size:cover; 
+	background-attachment: fixed; //backgroundの画像を固定
+	background-position: 1px 20px;
+	@include media{
+		width: 100%;
+		display: none;
+	}
+
+}
+
+#navigation {
+	@include fixed(fixed,none);
+	//position: fixed;
+	//display: none;
+	@include size(100vh,100%);
+	//width: 100%;
+	//height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: #fff;
+	z-index: 9998;
+	.navigation_inner {
+		display: table;
+		@include size(100%,100%);
+		//width: 100%;
+		//height: 100%; 
+		.navigation_menu {
+			display: table-cell;
+			vertical-align: middle;
+			.navigation_item {
+				@include size(40px,300px);
+				//width: 300px;
+				//height: 40px;
+				margin: 16px auto 0 auto; 
+				&:first-child {
+					margin-top: 0;
+				}
+				a {
+					@include fixed(relative,block);
+					//display: block;
+					//position: relative;
+					text-decoration: none;
+					font-size: 2.4rem;
+					color: #333;
+					line-height: 40px;
+					text-align: center;
+					@include media{
+						font-size: 2.0rem;
+					} 
+					&:hover {
+ 						color: #bdbdbd; 
+ 					}
+				}
+			} 
+		}
+	} 
+}
+
+.icon{
+   @include animation(animationSample 5s ease);
+}
+.block-center {
+    display: block;
+    @include margin(0,auto,0,auto);
+    //margin-left: auto;
+    //margin-right: auto;
+    @include border;
+    //-moz-border-radius: 50%;
+    //-webkit-border-radius: 50%;
+    //border-radius: 50%;
+    @include media{
+    	@include size(150px,150px);
+    }
+}
+.profile-icon{
+  position: relative;
+  text-align: center;
+  margin: 30px auto; 
+
+  @include animation(animationSample 3s ease);
+}
+
+section {
+	padding: 60px 0;
+	.container{
+		width: 90%;
+		@include margin(0,auto,0,auto);
+	}
+	h2{
+		font-size: 3.2rem;
+	}
+}
+
+#passions{
+	margin-top: 100px;
+	.passions-box{
+		text-align: center;
+		margin: 30px 10px;
+		padding: 30px 0;
+	}
+	h3{
+	    font-size: 2.2rem;
+	    margin-top: 20px;
+	    @include media{
+	    	font-size: 1.2rem;
+	    }
+	}
+	p{
+	    font-size: 1.8rem;
+	    margin-bottom: 20px;
+	    @include media{
+	    	font-size: 1.0rem;
+	    }
+	}
+	.type{
+	    color: #b2b2b2;
+	}
+	.text{
+	    margin-top: 20px;
+	    padding: 40px 0;
+	    font-size: 1.2rem;
+	}
+}
+@include media{
+	%scroll{
+		font-size: 1.0rem;
+	}
+}
+
+#goal{
+	h2{
+    	margin-bottom: 100px;
+    }
+    .flex{
+	    display: flex;
+	}
+	.align-items {
+		div {
+   			text-align: center;
+		}
+	}
+	.box-goal{
+	    height: 100px;
+	    align-items: center;
+  	}
+  	.prev{
+	    font-size: 2.0rem;
+	    @include media{
+	    	@extend %scroll;
+	    }
+	}
+	.next{
+	    font-size: 2.0rem;
+	    @include media{
+	    	@extend %scroll;
+	    }
+	}
+	button{
+		@include media{
+			margin: 0;
+
+			padding: 0;
+			background: none;
+			border: none;
+			border-radius: 0;
+			outline: none;
+			@include appearance;
+			//-webkit-appearance: none;
+			//-moz-appearance: none;
+			//appearance: none;
+			position: relative;
+		}
+	}
+}
+
+
+#colleague{
+   margin: auto; 
+   margin-top: 200px; 
+   h2{
+	   margin-bottom: 100px;
+	}
+	h3{
+		@include media{
+			font-size: 1.2rem;
+		}
+	}
+	p{
+		@include media{
+			font-size: 1.1rem;
+		}
+	}   
+}
+
+.form{
+	@include flex(flex,center);
+	//display: flex;
+	//justify-content: center;
+	flex-direction: column;
+	margin: auto;
+	width: 960px;
+	background-color: #eaeaea;
+	padding:  30px 50px;
+	//4つ文字入れたら上右下左
+	font-size: 20px;
+	@include media{
+		@include size(400px,100%);
+		//width: 100%;
+		//height: 400px;
+		@include flex_column;
+		//display: flex;
+		//justify-content: center;
+		//flex-direction: column;
+		background-color: #f4f4f4;
+		padding: 0;
+		//margin: 0 10px 0;
+	}
+}
+.label{
+	width: 120px;
+	margin-right: 80px;
+	@include media{
+		@include margin(5px,0,0,0);
+	}
+}
+
+.input-field{
+	@include size(40px,240px);
+    //width: 240px;
+    //height: 40px;
+    line-height: 40px;
+}
+.form-group{
+	@include flex(flex,center);
+	//display: flex;
+	//justify-content: center;
+	margin: 30px 0;
+	height: 40px;
+	align-items: center; //フォームと文字を合わせるために使う
+	@include media{
+		@include flex_column;
+		text-align: center;
+		font-size: 1.0rem;
+		button{
+			margin-left: 0;
+		}
+	}
+}
+.button{
+  position: relative;
+  @include color(#009cd3,#fff);
+  //background-color: #009cd3;
+  //color: #fff;
+  font-size: 20px;
+  width: 120px;
+  line-height: 50px;
+  border-radius: 5px;
+  border:  solid 3px #FFF;
+  margin-left: 200px;
+  text-align: center;
+  margin-left: 400px; 
+  margin-right: auto;
+  @include media {
+  	margin-right: 0;
+  }
+}
+
+#contact{
+	margin-top: 200px;
+	@include media{
+		@include flex_column;
+		//display: flex;
+		//justify-content: center;
+		//flex-direction: column;	
+		margin-top: 100px;	  	
+	}
+	ul {
+		text-align: center;
+		margin-top: 60px;
+		@include media{
+			@include flex_row;
+		}
+		li {
+			display: inline-block;
+			font-size: 2.8rem;
+			text-align: center;
+			margin-right: 20px;
+			@include box-sizing;
+			//-moz-box-sizing: border-box;
+			//-webkit-box-sizing: border-box;
+			//box-sizing: border-box;
+			vertical-align: top; 
+			&:last-child {
+				margin-right: 0;
+			}
+			a {
+				display: block;
+				@include size(50px,50px);
+				//width: 50px;
+				//height: 50px;
+				@include color(#000,#fff);
+				//color: #FFF;
+				//background-color: #000000;
+				@include border;
+				//-moz-border-radius: 50%;
+				//-webkit-border-radius: 50%;
+				
+				//border-radius: 50%;
+			}
+		}
+		.github{
+			font-size: 3.2rem;
+			i{
+				margin-left: 2px;
+			}
+		}
+		.twitter{
+			font-size: 3.2rem;
+				i{
+					margin-left: 2px;
+				}
+		}
+		.instagram{
+			font-size: 3.2rem;
+				i{
+					margin-left: 3px;
+				}
+		}
+	}
+}
+
+.material-button-anim{
+	@include media{
+		display: none;
+	}
+}
+/* .github{
+			font-size: 3.2rem;
+			i{
+				margin-left: 2px;
+			}
+		}
+		.twitter{
+			font-size: 3.2rem;
+				i{
+					margin-left: 2px;
+				}
+		}
+		.instagram{
+			font-size: 3.2rem;
+				i{
+					margin-left: 3px;
+				}
+		}
+		li {
+			display: inline-block;
+			font-size: 2.8rem;
+			text-align: center;
+			margin-right: 20px;
+			@include box-sizing;
+			//-moz-box-sizing: border-box;
+			//-webkit-box-sizing: border-box;
+			//box-sizing: border-box;
+			vertical-align: top; 
+			&:last-child {
+				margin-right: 0; 
+		}
+		a {
+			display: block;
+			@include size(50px,50px);
+			//width: 50px;
+			//height: 50px;
+			@include color(#000,#fff);
+			//color: #FFF;
+			//background-color: #000000;
+			@include border;
+			//-moz-border-radius: 50%;
+			//-webkit-border-radius: 50%;
+			
+			//border-radius: 50%;
+		}
+			}
+			*/
